@@ -1,0 +1,58 @@
+{% extends 'public/layout.html' %}
+{% block title %}Registrar Producto{% endblock %}
+
+{% block body %}
+
+
+<section>
+    <h2>
+        <a href="/" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Actualizar Información del Producto
+        <hr>
+    </h2>
+
+    {% if (dataInfo) %}
+      <form action="{{ url_for('formActualizarProducto', id = dataInfo.id ) }}" method="POST" class="mb-3" autocomplete="off" enctype="multipart/form-data">
+        <input type="text" class="form-control" name="id" value="{{ dataInfo.id }}" required hidden>
+        
+        <div class="row">
+            <div class="col">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" value="{{ dataInfo.nombre }}" class="form-control">
+            </div>
+            <div class="col">
+                <label for="memo">Descripcion</label>
+                <input type="text" name="memo" value="{{ dataInfo.memo }}" class="form-control">
+            </div>
+        </div>
+
+
+        <div class="row">
+            {% set urlProducto = '/static/assets/fotos_productos/' %}
+            <div class="col-md-6">
+                {% if(dataInfo.imagen !="") %}
+                        <img src="{{ urlProducto }}{{ dataInfo.imagen }}" class="foto_update" alt="{{ dataInfo.nombre }}">
+                    {% else %}
+                        <img src="{{ urlProducto }}sin_foto.jpg" class="foto_update" alt="imagen-sin">
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="foto">Cambiar Foto del Producto</label>
+                <input type="file" name="imagen" class="form-control-file" accept="image/*">
+            </div>
+        </div>
+        <hr>
+        <input class="button-primary mt-3 btn btn-info btn-block bold" type="submit" value="Guardar Actualización">
+    </form>
+
+      {% else %}
+      <div class="col-12">
+          <h2 class="text-center">
+              No existe el Producto
+          </h2>
+      </div>
+{% endif %}
+
+</section>
+
+{% endblock %}

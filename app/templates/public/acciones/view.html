@@ -1,0 +1,49 @@
+{% extends 'public/layout.html' %}
+{% block title %}Registrar Producto{% endblock %}
+
+{% block body %}
+
+
+<section>
+    <h2>
+        <a href="/" class="left" title="Volver"><i class="bi bi-arrow-left-circle"></i></a>
+        Detalles del Producto
+        <hr>
+    </h2>
+
+    {% if (infoProducto) %}
+    
+    <!-- {{ infoProducto }} -->
+
+
+    <div class="card" style="width: 25rem;">
+      {% set urlProducto = '/static/assets/fotos_productos/' %}
+        {% if(infoProducto.imagen) %}
+          <img src="{{ urlProducto }}{{ infoProducto.imagen }}" class="card-img-top" alt="producto">
+        {% else %}
+          <img src="{{ urlProducto }}sin_foto.jpg" class="card-img-top sin_foto" alt="producto">
+        {% endif %}
+
+        <div class="card-body">
+          <h5 class="card-title"> <strong>{{ infoProducto.nombre }}</strong></h5>
+        </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Nombre: <strong>{{ infoProducto.nombre }}</strong></li>
+          <li class="list-group-item">Descripcion: <strong>{{ infoProducto.memo }}</strong></li>
+
+
+        </ul>
+      </div>
+
+      {% else %}
+      <div class="col-12">
+          <h2 class="text-center">
+              No existe el Producto
+          </h2>
+      </div>
+{% endif %}
+
+</section>
+
+{% endblock %}
