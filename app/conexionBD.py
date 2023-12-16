@@ -7,7 +7,7 @@ def connectionBD():
         host ="frenoux.mysql.pythonanywhere-services.com",
         user ="frenoux",
         passwd ="mica2013",
-        database = "carniceria"
+        database = "frenoux$carniceria"
         )
     if mydb:
         print ("Conexion exitosa a BD")
